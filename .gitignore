@@ -1,0 +1,4 @@
+.pydevproject
+.settings/
+*.py[oc]
+__pycache__/
