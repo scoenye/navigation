@@ -21,22 +21,28 @@ from navigation import tier
 
 # Create your tests here.
 class TieredNavigationTest(unittest.TestCase):
+    def setUp(self):
+        self.root = tier.TieredNavigation()
+        self.child1_1 = tier.TieredNavigation(self.root)
+        self.child1_2 = tier.TieredNavigation(self.root)
+        self.child2_1 = tier.TieredNavigation(self.child1_1)
+        self.child2_2 = tier.TieredNavigation(self.child1_1)
+        self.child3_1 = tier.TieredNavigation(self.child1_2)
+        self.child3_2 = tier.TieredNavigation(self.child1_2)
+        self.child4_1 = tier.TieredNavigation(self.child3_1)
+        
     def test_alone(self):
-        item = tier.TieredNavigation()
-        self.assertListEqual(item.children(), [], "Children found where no children expected.")
-        self.assertIsNone(item.siblings(), "Siblings found where no siblings expected.")
+        self.assertListEqual(self.child4_1.children(), [], "Children found where no children expected.")
+        self.assertListEqual(self.child4_1.siblings(), [self.child4_1], "Siblings found where no siblings expected:" + str(self.child4_1.siblings()))
     
     def test_children(self):
-        item = tier.TieredNavigation()
-        child1 = tier.TieredNavigation(item)
-        child2 = tier.TieredNavigation(item)
-        self.assertListEqual(item.children(), [child1, child2], "Mismatch in children list.")
-        self.assertIsNone(item.siblings(), "Siblings found where no siblings expected.")
+        self.assertListEqual(self.root.children(), [self.child1_1, self.child1_2], "Mismatch in children list.")
     
     def test_siblings(self):
-        root = tier.TieredNavigation()
-        item = tier.TieredNavigation(root)
-        sibling1 = tier.TieredNavigation(root)
-        sibling2 = tier.TieredNavigation(root)
-        self.assertListEqual(item.children(), [], "Children found where no children expected.")
-        self.assertListEqual(item.siblings(), [item, sibling1, sibling2], "Mismatch in children list.")
+        self.assertListEqual(self.child2_1.siblings(), [self.child2_1, self.child2_2], "Mismatch in children list.")
+    
+    def test_elders(self):
+        self.assertListEqual(self.child3_1.elders(), [self.child1_1, self.child1_2], "Mismatch in elders list.")
+        self.assertListEqual(self.child1_1.elders(), [self.root], "Mismatch in 1st level elders list.")
+        self.assertIsNone(self.root.elders(), "Root elders found where none expected.")
+

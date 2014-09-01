@@ -50,4 +50,13 @@ class TieredNavigation:
         if (self.parent):
             return self.parent.children()
         else:
+            return [self]       # Give 1st level children at least one elder.
+    
+    def elders(self):
+        '''
+        Return the parent and its siblings
+        '''
+        if (self.parent):
+            return self.parent.siblings()
+        else:
             return None
