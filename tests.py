@@ -22,14 +22,14 @@ from navigation import tier
 # Create your tests here.
 class TieredNavigationTest(unittest.TestCase):
     def setUp(self):
-        self.root = tier.TieredNavigation()
-        self.child1_1 = tier.TieredNavigation(self.root)
-        self.child1_2 = tier.TieredNavigation(self.root)
-        self.child2_1 = tier.TieredNavigation(self.child1_1)
-        self.child2_2 = tier.TieredNavigation(self.child1_1)
-        self.child3_1 = tier.TieredNavigation(self.child1_2)
-        self.child3_2 = tier.TieredNavigation(self.child1_2)
-        self.child4_1 = tier.TieredNavigation(self.child3_1)
+        self.root = tier.TieredNavigation("root", None)
+        self.child1_1 = tier.TieredNavigation("child1_1", "child1_1", self.root)
+        self.child1_2 = tier.TieredNavigation("child1_2", "child1_2", self.root)
+        self.child2_1 = tier.TieredNavigation("child2_1", "child2_1", self.child1_1)
+        self.child2_2 = tier.TieredNavigation("child2_2", "child2_2", self.child1_1)
+        self.child3_1 = tier.TieredNavigation("child3_1", "child3_1", self.child1_2)
+        self.child3_2 = tier.TieredNavigation("child3_2", "child3_2", self.child1_2)
+        self.child4_1 = tier.TieredNavigation("child4_1", "child4_1", self.child3_1)
         
     def test_alone(self):
         self.assertListEqual(self.child4_1.children(), [], "Children found where no children expected.")

@@ -24,7 +24,9 @@ class TieredNavigation:
     n-Tiered navigation building block
     '''
     
-    def __init__(self, parent=None):
+    def __init__(self, name, url, parent=None):
+        self.name = name
+        self.url = url
         self.parent = parent
         self.offspring = []
         
