@@ -30,19 +30,31 @@ class TieredNavigationTest(unittest.TestCase):
         self.child3_1 = tier.TieredNavigation("child3_1", "child3_1", self.child1_2)
         self.child3_2 = tier.TieredNavigation("child3_2", "child3_2", self.child1_2)
         self.child4_1 = tier.TieredNavigation("child4_1", "child4_1", self.child3_1)
-        
+    
+    # Now that the methods return copies of the navigation items, a direct comparison
+    # of the returned lists is no longer possible. Use the URL attribute instead.
     def test_alone(self):
-        self.assertListEqual(self.child4_1.children(), [], "Children found where no children expected.")
-        self.assertListEqual(self.child4_1.siblings(), [self.child4_1], "Siblings found where no siblings expected:" + str(self.child4_1.siblings()))
+        self.assertEqual(len(self.child4_1.children()), 0, "Children found where no children expected.")
+        self.assertEqual(len(self.child4_1.siblings()), 1, "Incorrect number of siblings encountered.")
+        self.assertEqual(self.child4_1.siblings()[0].url, "child4_1", "Expected self, found another.")
     
     def test_children(self):
-        self.assertListEqual(self.root.children(), [self.child1_1, self.child1_2], "Mismatch in children list.")
+        self.assertEqual(len(self.root.children()), 2, "Incorrect number of children detected.")
+        self.assertEqual(self.root.children()[0].url, "child1_1", "Did not find child1_1 in slot 0.")
+        self.assertEqual(self.root.children()[1].url, "child1_2", "Did not find child1_2 in slot 1.")
     
     def test_siblings(self):
-        self.assertListEqual(self.child2_1.siblings(), [self.child2_1, self.child2_2], "Mismatch in children list.")
-    
+        self.assertEqual(len(self.child2_1.siblings(self)), 2, "Incorrect number of siblings detected.")
+        self.assertEqual(self.child2_1.siblings(self)[0].url, "child2_1", "Did not find child2_1 in slot 0.")
+        self.assertEqual(self.child2_1.siblings(self)[1].url, "child2_2", "Did not find child2_2 in slot 1.")
+
     def test_elders(self):
-        self.assertListEqual(self.child3_1.elders(), [self.child1_1, self.child1_2], "Mismatch in elders list.")
-        self.assertListEqual(self.child1_1.elders(), [self.root], "Mismatch in 1st level elders list.")
+        self.assertEqual(len(self.child3_1.elders()), 2, "Incorrect number of elders detected.")
+        self.assertEqual(self.child3_1.elders()[0].url, "child1_1", "Did not find child1_1 in slot 0.")
+        self.assertEqual(self.child3_1.elders()[1].url, "child1_2", "Did not find child1_2 in slot 1.")
+        
+        self.assertEqual(len(self.child1_1.elders()), 1, "Incorrect number of elders detected.")
+        self.assertEqual(self.child1_1.elders()[0].url, None, "Unexpected URL in slot 0.")
+
         self.assertIsNone(self.root.elders(), "Root elders found where none expected.")
 
