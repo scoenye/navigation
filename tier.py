@@ -65,7 +65,7 @@ class TieredNavigation:
             siblings = self.parent.children(selected)
         else:
             siblings = [copy.copy(self)]    # Give 1st level children at least one elder.
-            siblings[0].select = True       # Mark as the selected item as there are no others.    
+            siblings[0].selected = True       # Mark as the selected item as there are no others.    
         return siblings
     
     def elders(self):
