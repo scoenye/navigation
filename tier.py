@@ -26,6 +26,8 @@ class TieredNavigation:
     n-Tiered navigation building block
     '''
     
+    home = None
+    
     def __init__(self, name, url, parent=None):
         self.name = name
         self.url = url
@@ -73,7 +75,10 @@ class TieredNavigation:
         Return the parent and it's siblings
         '''
         if (self.parent):
-            return self.parent.siblings(self.parent)
+            #TODO: Make this return Home + nodes + Go Up
+            up_link = copy.copy(self.parent)
+            up_link.name = "Go Up"
+            return [TieredNavigation.home] + self.parent.siblings(self.parent) + [up_link]
         else:
             return None
         
