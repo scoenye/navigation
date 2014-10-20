@@ -72,7 +72,7 @@ class TieredNavigation:
     
     def elders(self):
         '''
-        Return the parent and it's siblings
+        Return the parent and its siblings
         '''
         if (self.parent):
             #TODO: Make this return Home + nodes + Go Up
@@ -82,12 +82,15 @@ class TieredNavigation:
         else:
             return None
         
+    def is_selected(self):
+        if (self.selected):
+            return "selected"
+        else:
+            return ""
+        
     def three_tier(self):
         '''
         Generate the three tiered navigation structure. url_name is used to 
         determine which objects will have their selected flag set.
         '''
         return [self.elders(), self.siblings(self), self.children()]
-        
-        
-
