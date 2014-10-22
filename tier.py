@@ -46,7 +46,7 @@ class TieredNavigation:
     
     def children(self, selected = None):
         '''
-        Retrieve the descendent items. A copy of the originals is returned so the
+        Retrieve the descendent items. A navigation of the originals is returned so the
         selected flag can be set without interfering with other requests.
         '''
         children_copies = []

@@ -49,11 +49,15 @@ class TieredNavigationTest(unittest.TestCase):
         self.assertEqual(self.child2_1.siblings(self)[1].url, "child2_2", "Did not find child2_2 in slot 1.")
 
     def test_elders(self):
-        self.assertEqual(len(self.child3_1.elders()), 2, "Incorrect number of elders detected.")
-        self.assertEqual(self.child3_1.elders()[0].url, "child1_1", "Did not find child1_1 in slot 0.")
-        self.assertEqual(self.child3_1.elders()[1].url, "child1_2", "Did not find child1_2 in slot 1.")
-        
-        self.assertEqual(len(self.child1_1.elders()), 1, "Incorrect number of elders detected.")
-        self.assertEqual(self.child1_1.elders()[0].url, None, "Unexpected URL in slot 0.")
+        # Home + 2 elders + Go Up == 4
+        self.assertEqual(len(self.child3_1.elders()), 4, "Incorrect number of elders detected.")
 
-        self.assertIsNone(self.root.elders(), "Root elders found where none expected.")
+        self.assertEqual(self.child3_1.elders()[0].url, "app:index", "Did not find root in slot 0.")
+        self.assertEqual(self.child3_1.elders()[1].url, "child1_1", "Did not find child1_1 in slot 1.")
+        self.assertEqual(self.child3_1.elders()[2].url, "child1_2", "Did not find child1_2 in slot 2.")
+        self.assertEqual(self.child3_1.elders()[3].url, "child1_2", "Did not find child1_2 in slot 3.")
+        
+        self.assertEqual(len(self.child1_1.elders()), 3, "Incorrect number of elders detected.")
+        self.assertEqual(self.child1_1.elders()[1].url, None, "Unexpected URL in slot 0.")
+
+        self.assertListEqual(self.root.elders(), [], "Root elders found where none expected.")
