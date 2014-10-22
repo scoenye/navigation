@@ -57,4 +57,3 @@ class TieredNavigationTest(unittest.TestCase):
         self.assertEqual(self.child1_1.elders()[0].url, None, "Unexpected URL in slot 0.")
 
         self.assertIsNone(self.root.elders(), "Root elders found where none expected.")
-

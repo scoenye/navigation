@@ -66,8 +66,8 @@ class TieredNavigation:
         if (self.parent):
             siblings = self.parent.children(selected)
         else:
-            siblings = [copy.copy(self)]    # Give 1st level children at least one elder.
-            siblings[0].selected = True       # Mark as the selected item as there are no others.    
+            siblings = [copy.copy(self)]        # Give 1st level children at least one elder.
+            siblings[0].selected = True         # Mark as the selected item as there are no others.    
         return siblings
     
     def elders(self):
@@ -75,12 +75,11 @@ class TieredNavigation:
         Return the parent and its siblings
         '''
         if (self.parent):
-            #TODO: Make this return Home + nodes + Go Up
             up_link = copy.copy(self.parent)
             up_link.name = "Go Up"
             return [TieredNavigation.home] + self.parent.siblings(self.parent) + [up_link]
         else:
-            return None
+            return []
         
     def is_selected(self):
         if (self.selected):
