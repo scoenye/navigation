@@ -27,3 +27,20 @@ class NavigableModelAdmin(admin.ModelAdmin):
         extra_context = extra_context or {}
         extra_context['navigation'] = nav_tree[nav_item].three_tier()
         return super(NavigableModelAdmin, self).changelist_view(request, extra_context=extra_context)
+
+    def change_view(self, request, object_id, nav_item, form_url='', extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['navigation'] = nav_tree[nav_item].three_tier()
+        return super(NavigableModelAdmin, self).change_view(request, object_id, form_url, extra_context=extra_context)
+
+    def add_view(self, request, nav_item, form_url='', extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['navigation'] = nav_tree[nav_item].three_tier()
+        return super(NavigableModelAdmin, self).add_view(request, form_url, extra_context=extra_context)
+
+    def delete_view(self, request, object_id, nav_item, extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['navigation'] = nav_tree[nav_item].three_tier()
+        return super(NavigableModelAdmin, self).delete_view(request, object_id, extra_context=extra_context)
+
+
