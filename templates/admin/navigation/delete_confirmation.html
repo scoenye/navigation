@@ -1,18 +1,12 @@
 {% extends "admin/delete_confirmation.html" %}
 {% load i18n %}
 
-{% block breadcrumbs %}
-<div class="breadcrumbs">
+{% block nav-global %}
 	{% for tier in navigation %}
 		<div class="NavigationTier">
 		{% for item in tier %}
-			{% if item.selected %}
-				<span>{{ item.name }}</span>
-			{% else %}
-				<span><a href="{% url item.url %}">{{ item.name }}</a></span>
-			{% endif %}
+			<span><a href="{% url item.url %}">{{ item.name }}</a></span>
 		{% endfor %}
 		</div>
 	{% endfor %}
-</div>
 {% endblock %}
