@@ -5,7 +5,11 @@
 	{% for tier in navigation %}
 		<div class="NavigationTier">
 		{% for item in tier %}
-			<span><a href="{% url item.url %}">{{ item.name }}</a></span>
+			{% if item.selected %}
+				<span>{{ item.name }}</span>
+			{% else %}
+				<span><a href="{% url item.url %}">{{ item.name }}</a></span>
+			{% endif %}
 		{% endfor %}
 		</div>
 	{% endfor %}
