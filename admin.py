@@ -19,12 +19,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/
 
 from django.contrib import admin
 
-from app import nav_tree
+from tier import nav_tree
 
 # Bolt the navigation to a subclass of ModelAdmin to reduce boilerplate
 class NavigableModelAdmin(admin.ModelAdmin):
     nav_item = ''
-    
+
     def changelist_view(self, request, extra_context=None):
         extra_context = extra_context or {}
         extra_context['navigation'] = nav_tree[self.nav_item].three_tier()

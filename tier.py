@@ -21,6 +21,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/
 
 import copy
 
+# Root of the tree. Import this in all modules that need access to the navigation tree.
+nav_tree = {}
+
 class TieredNavigation:
     '''
     n-Tiered navigation building block

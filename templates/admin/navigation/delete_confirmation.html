@@ -2,15 +2,18 @@
 {% load i18n %}
 
 {% block nav-global %}
+<div id="navigation">
 	{% for tier in navigation %}
-		<div class="NavigationTier">
-		{% for item in tier %}
-			{% if item.selected %}
-				<span>{{ item.name }}</span>
-			{% else %}
-				<span><a href="{% url item.url %}">{{ item.name }}</a></span>
-			{% endif %}
-		{% endfor %}
-		</div>
+	<div class="NavigationTier">
+		<ul class="navbar">
+			{% for item in tier %}
+			<li class="navtab {{ item.is_selected }}">
+			<span class="navtab_left">&nbsp;</span><a href="{% url item.url %}">{{ item.name }}</a><span class="navtab_right">&nbsp;</span>
+			</li>
+			{% endfor %}
+		</ul>
+		<hr>
+	</div>
 	{% endfor %}
+</div>         
 {% endblock %}
