@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/
 
 from django.contrib import admin
 
-from tier import nav_tree
+from navigation.tier import nav_tree
 
 # Bolt the navigation to a subclass of ModelAdmin to reduce boilerplate
 class NavigableModelAdmin(admin.ModelAdmin):
