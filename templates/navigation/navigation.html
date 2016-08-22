@@ -1,0 +1,14 @@
+<div id="navigation">
+	{% for tier in navigation %}
+	<div class="NavigationTier">
+		<ul class="navbar">
+			{% for item in tier %}
+			<li class="navtab {{ item.is_selected }}">
+			<span class="navtab_left">&nbsp;</span><a href="{% url item.url %}">{{ item.name }}</a><span class="navtab_right">&nbsp;</span>
+			</li>
+			{% endfor %}
+		</ul>
+		<hr class="EndFloat">
+	</div>
+	{% endfor %}
+</div>
