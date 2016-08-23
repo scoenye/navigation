@@ -1,19 +1,6 @@
 {% extends "admin/delete_confirmation.html" %}
-{% load i18n %}
+{% load navigation %}
 
 {% block nav-global %}
-<div id="navigation">
-	{% for tier in navigation %}
-	<div class="NavigationTier">
-		<ul class="navbar">
-			{% for item in tier %}
-			<li class="navtab {{ item.is_selected }}">
-			<span class="navtab_left">&nbsp;</span><a href="{% url item.url %}">{{ item.name }}</a><span class="navtab_right">&nbsp;</span>
-			</li>
-			{% endfor %}
-		</ul>
-		<hr>
-	</div>
-	{% endfor %}
-</div>         
+	{% nav_3tier navigation %}  
 {% endblock %}
