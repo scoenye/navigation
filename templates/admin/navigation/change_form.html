@@ -1,5 +1,10 @@
 {% extends "admin/change_form.html" %}
-{% load navigation %}
+{% load static navigation %}
+
+{% block extrastyle %}
+	{{ block.super }}
+	<link rel="stylesheet" type="text/css" href="{% static "navigation/css/navigation.css" %}" >
+{% endblock %}
 
 {% block nav-global %}
 	{% nav_3tier navigation %}
