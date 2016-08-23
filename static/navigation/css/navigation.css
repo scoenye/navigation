@@ -1,0 +1,117 @@
+/*
+ * A tiered navigation workflow extension for the Django admin
+ * 
+ * @author: Sven Coenye
+ * 
+ * Copyright (C) 2014  Sven Coenye
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/
+ */
+
+/* Tiered navigation items */
+
+UL.navbar {
+	padding-left: 0;
+	margin: 2px 20% 0 0;
+	text-transform: uppercase;
+}
+
+UL.navbar LI {
+	font: bold small Arial, Helvetica, sans-serif;
+	list-style-type: none;
+	float: left; 
+	padding-bottom: 4px;
+    padding-top: 3px;
+	margin-bottom: 2px;
+    margin-right: 2px;
+}
+
+/* Undo Django admin mess */
+#user-tools {
+	padding: 0.5em 10px;
+}
+
+#header {
+	color: #5b80b2;
+	background-color: #f8f8f8;
+	/* Counter Django 1.10 admin */
+	height: auto;
+	line-height: inherit;
+}
+
+#header a:link, #header a:visited {
+    color: black
+}
+
+#header UL.navbar LI.selected a:link, #header UL.navbar LI.selected a:visited {
+    color: white;
+}
+/* Back to normally scheduled programming */
+
+UL.navbar LI A {
+	background-color: #bebebe;
+	text-decoration: none;
+	padding: 0.25ex 0 4px 0;
+	color: black;
+}
+
+UL.navbar LI.selected {
+	padding-bottom: 6px;
+	margin-bottom: 0;
+}
+
+UL.navbar LI.selected A {
+	background-color: #7e0101;
+	padding: 0.25ex 0 6px 0;
+	color: white;
+}
+
+UL.navbar LI SPAN.navtab_left {
+	background: #bebebe url(../images/taboff_left_nb.png) no-repeat left top;
+	padding: 0.25ex 0 4px 6px;
+}
+
+UL.navbar LI SPAN.navtab_right {
+	background: #bebebe url(../images/taboff_right_nb.png) no-repeat top right;
+	padding: 0.25ex 6px 4px 0;
+}
+
+UL.navbar LI.selected SPAN.navtab_left {
+	background: #7e0101 url(../images/tabon_left_nb.png) no-repeat left top;
+        padding-bottom: 6px;
+}
+
+UL.navbar LI.selected SPAN.navtab_right {
+	background: #7e0101 url(../images/tabon_right_nb.png) no-repeat right top;
+        padding-bottom: 6px;
+}
+
+.EndFloat {clear: left}
+
+HR {
+	height: 4px;
+	background-color: #7e0101;
+	border: medium none;
+	margin-bottom: 2px;
+	padding: 0;
+	clear: both
+}
+/* Because IE makes a mess out out the HR tag */
+DIV.HR {
+	clear: left;
+	height: 4px;
+	font-size: 0;
+	background: #7e0101;
+	margin-bottom: 2px;
+}
